@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Untitled Document</title>
+<link href="JS-practice.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+<div id="buttonContainerDiv"></div>
+<script>
+
+var buttonTitleList = ['Div1', 'Div2', 'Div3', 'This is a very long title', 'Div5', 'Div6'];
+
+for (var i = 0; i < buttonTitleList.length; i++) {
+	
+	var div = document.createElement('div');
+	div.setAttribute('class', 'buttonDiv');
+	div.setAttribute('id', 'buttonDiv'+ i);
+	div.addEventListener('click', clickedFunc);
+	document.getElementById('buttonContainerDiv').appendChild(div);
+	
+	var div = document.createElement('div');
+	div.setAttribute('class', 'btnTitleDiv');
+	div.innerHTML = '<p>' + buttonTitleList[i] + '</p>';
+	document.getElementById('buttonDiv' + i).appendChild(div);
+}
+
+window.onload = adjustHeight;
+
+window.onresize = adjustHeight;
+
+function adjustHeight() {
+	var buttonContainer = document.getElementById('buttonContainerDiv');
+	var numKids = buttonContainer.childNodes.length;
+	for (var i = 0; i < numKids; i++) {
+		var toChange = document.getElementById('buttonDiv' + i);
+		var newHeight = buttonContainer.clientHeight / numKids;
+		toChange.style.height = newHeight + 'px';
+		toChange.firstChild.style.marginTop = (toChange.clientHeight / 2) -(toChange.firstChild.clientHeight / 2) + 'px';
+
+	}
+}
+
+function clickedFunc() {
+
+	for (var i = 0; i < this.parentNode.childNodes.length; i++) {		
+		this.parentNode.childNodes[i].setAttribute('class', 'buttonDiv');
+	}
+	this.setAttribute('class', 'buttonDiv clickedBtn');
+}
+
+function overFunc() {
+	this.setAttribute('class', 'buttonDiv mouseOver');
+}
+
+function outFunc() {
+	this.setAttribute('class', 'buttonDiv');
+}
+
+</script>
+</body>
+</html>
