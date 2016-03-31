@@ -3,7 +3,7 @@
 //}
 
 function makeLeftButtons() {
-    var buttonTitleList = ['Div1', 'Div2', 'Div3', 'This is a very long title', 'Div5', 'Div6', 'Div7'];
+    var buttonTitleList = ['Text', 'Gallery', 'Favorites', 'Image', 'Share', 'Settings'];
 
 
     for (var i = 0; i < buttonTitleList.length; i++) {
@@ -16,7 +16,7 @@ function makeLeftButtons() {
 
         var div = document.createElement('div');
         div.setAttribute('class', 'btnTitleDiv');
-        div.innerHTML = '<p>' + buttonTitleList[i] + '</p>';
+        div.innerHTML = buttonTitleList[i];
         document.getElementById('buttonDiv' + i).appendChild(div);
     }
     adjustHeight();
@@ -26,13 +26,18 @@ function makeLeftButtons() {
  function adjustHeight() {
     var buttonContainer = document.getElementById('buttonContainerDiv');
     var numKids = buttonContainer.childNodes.length;
+    var newHeight = Math.floor(buttonContainer.clientHeight / numKids);
+    var heightCount = 0;
+    var lastButtonHeight = 0;
     for (var i = 0; i < numKids; i++) {
         var toChange = document.getElementById('buttonDiv' + i);
-        var newHeight = buttonContainer.clientHeight / numKids;
         toChange.style.height = newHeight + 'px';
-        toChange.firstChild.style.marginTop = (toChange.clientHeight / 2) - (toChange.firstChild.clientHeight / 2) + 'px';
-
+        heightCount += newHeight;
+        console.log(heightCount);
     }
+    heightCount -= newHeight;
+    lastButtonHeight = buttonContainer.clientHeight - heightCount;
+    buttonContainer.lastChild.style.height = lastButtonHeight;
 }
 
 function clickedFunc() {
