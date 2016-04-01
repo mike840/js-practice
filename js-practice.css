@@ -35,6 +35,7 @@ body {
     font-size: 13px;
     color: white;
     letter-spacing: 0.03em;
+    box-sizing: border-box;
 }
 
 .btnTitleDiv {
