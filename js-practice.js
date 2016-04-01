@@ -1,7 +1,3 @@
-//function makeLeftButtons() {
-//    console.log('ready');
-//}
-
 function makeLeftButtons() {
     var buttonTitleList = ['Text', 'Gallery', 'Favorites', 'Image', 'Share', 'Settings', 'Other'];
 
@@ -12,7 +8,9 @@ function makeLeftButtons() {
         var $div = $(div);
         $div.attr('class', 'buttonDiv');
         $div.attr('id', 'buttonDiv' + i);
-        $div.on('click', clickedFunc);
+        $div.on('click', function(){
+            clickedFunc($(this));
+        });
         $('#buttonContainerDiv').append(div);
 
         var div = document.createElement('div');
@@ -41,20 +39,13 @@ function makeLeftButtons() {
     buttonContainer.lastChild.style.height = lastButtonHeight;
 }
 
-function clickedFunc() {
-
-    for (var i = 0; i < this.parentNode.childNodes.length; i++) {
-        this.parentNode.childNodes[i].setAttribute('class', 'buttonDiv');
+function clickedFunc(buttonClicked) {
+    if (buttonClicked.hasClass('clicked')) {
+        buttonClicked.removeClass('clicked');
+        return;
     }
-    this.setAttribute('class', 'buttonDiv clicked');
-}
-
-function overFunc() {
-    this.setAttribute('class', 'buttonDiv mouseOver');
-}
-
-function outFunc() {
-    this.setAttribute('class', 'buttonDiv');
+    $('.buttonDiv').removeClass('clicked');
+    buttonClicked.addClass('clicked');
 }
 
 window.onresize = adjustHeight;
