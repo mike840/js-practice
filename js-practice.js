@@ -1,45 +1,56 @@
-var leftColumnTitles = ['Text', 'Gallery', 'Favorites', 'Image', 'Share', 'Settings', 'Other'];
+$(document).ready(function() {
+    makeButtonColumn(leftColumnTitles, 'leftButtonTitle', 'leftButton', '#leftButtonContainer');
+    makeButtonColumn(rightColumnTitles, 'rightButtonTitle', 'rightButton', '#rightButtonContainer')
+});
 
-function makeButtonColumn(buttonTitles, buttonTitleClass, buttonClass, buttonID, buttonParent) {
+var leftColumnTitles = ['Text', 'Gallery', 'Favorites', 'Image', 'Share', 'Settings', 'Other'];
+var rightColumnTitles = ['Apples', 'Blood Oranges', 'Pears', 'Bananas', 'Peaches', 'Kiwi Fruit', 'Mangoes']
+
+function makeButtonColumn(buttonTitles, buttonTitleClass, buttonName, buttonParent) {
 
 
     for (var i = 0; i < buttonTitles.length; i++) {
-        console.log(buttonTitles.length);
         var div = document.createElement('div');
         var $div = $(div);
-        $div.addClass(buttonClass);
-        $div.attr('id', buttonID + i);
+        $buttonParent = $(buttonParent);
+        $div.addClass(buttonName);
+        $div.attr('id', buttonName + i);
 
         $div.on('click', function(){
             clickedFunc($(this));
         });
-        $(buttonParent).append(div);
+        $buttonParent.append(div);
 
         var div = document.createElement('div');
         var $div = $(div);
         $div.addClass(buttonTitleClass);
         $div.html(buttonTitles[i]);
-        console.log(buttonTitles[i]);
-        $('#' + buttonID + i).append(div);
+        var buttonToAttachTo = '#' + buttonName + i;
+
+        $buttonToAttachTo = $(buttonToAttachTo);
+        console.log($buttonToAttachTo.attr('id'));
+        $buttonToAttachTo.append(div);
     }
-    adjustHeight();
+    adjustHeight(buttonParent, buttonName);
 }
 
 
- function adjustHeight() {
-    var $buttonContainer = $('#buttonContainerDiv');
-    var numKids = $buttonContainer.children().length;
-    var newHeight = Math.floor($buttonContainer.height() / numKids);
+ function adjustHeight(buttonParent, buttonName) {
+    var $buttonParent = $(buttonParent);
+    var numKids = $buttonParent.children().length;
+     console.log(numKids)
+    var newHeight = Math.floor($buttonParent.height() / numKids) - 1;
+    console.log('newHeight is ' + newHeight);
     var heightCount = 0;
     var lastButtonHeight = 0;
     for (var i = 0; i < numKids-1; i++) {
-        var $toChange = $('#buttonDiv' + i);
-        $toChange.height(newHeight + 'px');
+        var $toChange = $('#' + buttonName + i);
+        $toChange.css('height', newHeight + 'px');
         heightCount += newHeight;
         console.log(heightCount);
     }
-    lastButtonHeight = ($buttonContainer.height() - heightCount) - numKids;
-    $buttonContainer.children().last().height(lastButtonHeight + 'px');
+    lastButtonHeight = ($buttonParent.height() - heightCount);
+    $buttonParent.children().last().css('height', lastButtonHeight + 'px');
 }
 
 function clickedFunc(buttonClicked) {
@@ -47,9 +58,12 @@ function clickedFunc(buttonClicked) {
         buttonClicked.removeClass('clicked');
         return;
     }
-    $('.buttonDiv').removeClass('clicked');
+    buttonClicked.parent().children().removeClass('clicked');
     buttonClicked.addClass('clicked');
 }
 
-window.onresize = adjustHeight;
+$(window).on('resize', function(){
+    adjustHeight('#leftButtonContainer', 'leftButton')
+    adjustHeight('#rightButtonContainer', 'rightButton')
+});
 

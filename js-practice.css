@@ -10,48 +10,97 @@ body {
     margin: 0px;
     padding: 0px;
     background-color: lightgray;
-    font-family: 'Open Sans';
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 300;
 }
 
-#buttonContainerDiv {
+#topBar {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    background-color: indianred;
+}
+
+#mainWindow {
     position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 0px;
+    top: 50px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.leftButtonContainer {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    bottom: 0;
     background-color: yellow;
+}
+
+.rightButtonContainer {
+    position: absolute;
+    top: 0px;
+    right: 0;
+    bottom: 0;
+    background-color: yellow;
+}
+
+.leftButton {
+    display: table;
+    width: 68px;
     height: 100%;
+    border-top: 1px solid #635469;
+    background-color: #48485D;
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 12px;
+    color: white;
+    letter-spacing: 0.02em;
     box-sizing: border-box;
 }
 
-.buttonDiv {
+.rightButton {
     display: table;
-    width: 80px;
-    height: 80px;
+    width: 86px;
+    height: 100%;
     border-top: 1px solid #635469;
     background-color: #48485D;
     padding: 0 4px 0 10px;
     cursor: pointer;
     font-weight: 400;
-    font-size: 13px;
+    font-size: 12px;
     color: white;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.04em;
     box-sizing: border-box;
 }
 
-.btnTitleDiv {
+.leftButtonTitle {
     display: table-cell;
     vertical-align: middle;
-    margin: 0px;
-    padding: 0px;
+    text-align: center;
     opacity: .65;
 }
 
-.buttonDiv.clicked {
+.rightButtonTitle {
+    display: table-cell;
+    vertical-align: middle;
+    opacity: .65;
+}
+
+.leftButton.clicked {
     background-color: lightgray;
     color: #342e3b;
     border-top: 0px;
-    letter-spacing: 0.01em;
-    font-weight: 700;
+    letter-spacing: 0.0em;
+    font-weight: 800;
+}
+
+.rightButton.clicked {
+    background-color: lightgray;
+    color: #342e3b;
+    border-top: 0px;
+    letter-spacing: 0.0em;
+    font-weight: 800;
 }
 
 #innerDiv {
@@ -80,4 +129,24 @@ body {
     margin: 1px;
     padding: 0 4px 0 4px;
     box-sizing: border-box;
+}
+
+#titleBar {
+    position: absolute;
+    height: 100%;
+    background-color: cadetblue;
+    left: 68px;
+    right: 86px;
+}
+
+.titleBarText {
+    color: white;
+    opacity: .8;
+    font-size: 14px;
+    font-weight: 300;
+    padding-left: 16px;
+    letter-spacing: 0.03em;
+    height: 50px;
+    margin: 0;
+    line-height: 50px;
 }
