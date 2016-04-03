@@ -1,14 +1,15 @@
 $(document).ready(function() {
-    makeButtonColumn(leftColumnTitles, 'leftButtonTitle', 'leftButton', '#leftButtonContainer');
-    makeButtonColumn(rightColumnTitles, 'rightButtonTitle', 'rightButton', '#rightButtonContainer')
+    makeSideButtons(leftColumnTitles, 'leftButtonTitle', 'leftButton', '#leftButtonContainer');
+    makeSideButtons(rightColumnTitles, 'rightButtonTitle', 'rightButton', '#rightButtonContainer')
+    makeIndicatorButtons()
 });
 
 var leftColumnTitles = ['Text', 'Gallery', 'Favorites', 'Image', 'Share', 'Settings', 'Other'];
 var rightColumnTitles = ['Apples', 'Blood Oranges', 'Pears', 'Bananas', 'Peaches', 'Kiwi Fruit', 'Mangoes']
 
 
-//MAKE LEFT AND RIGHT BUTTONS
-function makeButtonColumn(buttonTitles, buttonTitleClass, buttonName, buttonParent) {
+//MAKE LEFT BUTTONS
+function makeSideButtons(buttonTitles, buttonTitleClass, buttonName, buttonParent) {
     for (var i = 0; i < buttonTitles.length; i++) {
 
 //      MAKE BUTTONS
@@ -22,6 +23,7 @@ function makeButtonColumn(buttonTitles, buttonTitleClass, buttonName, buttonPare
         $div.on('click', function(){
             clickedFunc($(this));
         });
+
         $buttonParent.append(div);
 
 
@@ -39,6 +41,89 @@ function makeButtonColumn(buttonTitles, buttonTitleClass, buttonName, buttonPare
     }
     adjustHeight(buttonParent, buttonName);
 }
+
+//MAKE INDICATOR BUTTONS
+function makeIndicatorButtons() {
+    console.log('makeIndicatorButtons');
+    for (var i = 0; i < rightColumnTitles.length; i++) {
+
+//      MAKE BUTTONS
+        var div = document.createElement('div');
+        var $div = $(div);
+        $div.addClass('indicatorButton');
+        $div.attr('id', 'indicatorButton' + i);
+
+//      ADD BUTTON CLICK LISTERNERS
+        $div.on('click', function(){
+            indicatorClickedFunc($(this));
+        });
+
+        $('.indicatorButtonContainer').append(div);
+
+
+//      MAKE BUTTON TITLES
+        var div = document.createElement('div');
+        var $div = $(div);
+        $div.addClass('indicatorIcon');
+        $div.html('<');
+        var buttonToAttachTo = '#indicatorButton' + i;
+
+
+//      ATTACH BUTTON TITLES TO BUTTONS
+        $buttonToAttachTo = $(buttonToAttachTo);
+        $buttonToAttachTo.append(div);
+    }
+    adjustHeight('#indicatorButtonContainer', 'indicatorButton');
+}
+
+////MAKE RIGHT BUTTONS
+//function makeRightButtons(buttonTitles, buttonTitleClass, buttonName, buttonParent) {
+//    for (var i = 0; i < buttonTitles.length; i++) {
+//
+////      MAKE BUTTONS
+//        $buttonParent = $(buttonParent);
+//
+//        var row = document.createElement('row');
+//        var cell1 = document.createElement('cell1');
+//        var cell2 = document.createElement('cell2');
+//        var $row = $(row);
+//        var $cell1 = $(cell1);
+//        var $cell2 = $(cell2);
+//
+//        $row.addClass('rightButtonRow');
+//        $cell1.addClass('inidicatorButton');
+//        $cell2.addClass(buttonName);
+//
+//        $cell1.attr('id', buttonName + i);
+//        $cell2.attr('id', buttonName + i);
+//
+////      ADD BUTTON CLICK LISTERNERS
+//        $cell1.on('click', function(){
+//            clickedFunc($(this));
+//        });
+//        $cell2.on('click', function(){
+//            clickedFunc($(this));
+//        });
+//
+//        $row.append($cell1);
+//        $row.append($cell2);
+//        $buttonParent.append($row);
+//
+//
+////      MAKE BUTTON TITLES
+//        var div = document.createElement('div');
+//        var $div = $(div);
+//        $div.addClass(buttonTitleClass);
+//        $div.html(buttonTitles[i]);
+//        var buttonToAttachTo = '#' + buttonName + i;
+//
+//
+////      ATTACH BUTTON TITLES TO BUTTONS
+//        $buttonToAttachTo = $(buttonToAttachTo);
+//        $buttonToAttachTo.append(div);
+//    }
+//    adjustHeight(buttonParent, buttonName);
+//}
 
 //ADJUST BUTTON HEIGHT
  function adjustHeight(buttonParent, buttonName) {
@@ -60,6 +145,7 @@ function makeButtonColumn(buttonTitles, buttonTitleClass, buttonName, buttonPare
 $(window).on('resize', function(){
     adjustHeight('#leftButtonContainer', 'leftButton')
     adjustHeight('#rightButtonContainer', 'rightButton')
+    adjustHeight('#indicatorButtonContainer', 'indicatorButton');
 });
 
 //SIDE BUTTON CLICKED FUNC
@@ -72,6 +158,10 @@ function clickedFunc(buttonClicked) {
     buttonClicked.parent().children().removeClass('clicked');
     buttonClicked.addClass('clicked');
     openSidePane(buttonClicked);
+}
+
+function indicatorClickedFunc(buttonClicked){
+    console.log('indictor ' + buttonClicked.attr('id'));
 }
 
 //OPEN SIDE PANES
