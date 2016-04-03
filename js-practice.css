@@ -9,7 +9,7 @@ div {
 body {
     margin: 0px;
     padding: 0px;
-    background-color: lightgray;
+    background-color: #5F9EA0;
     font-family: 'Exo 2', sans-serif;
     font-weight: 300;
 }
@@ -21,6 +21,26 @@ body {
     background-color: indianred;
 }
 
+#titleBar {
+    position: absolute;
+    height: 100%;
+    background-color: cadetblue;
+    left: 68px;
+    right: 86px;
+}
+
+.titleBarText {
+    color: white;
+    opacity: .8;
+    font-size: 14px;
+    font-weight: 300;
+    padding-left: 16px;
+    letter-spacing: 0.03em;
+    height: 50px;
+    margin: 0;
+    line-height: 50px;
+}
+
 #mainWindow {
     position: absolute;
     top: 50px;
@@ -29,12 +49,65 @@ body {
     left: 0;
 }
 
+#viewPane {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    background-color: #e5e5e5;
+    padding: 20px;
+    border-radius: 9px;
+    border: 1px solid #B9B9B9;
+    box-sizing: border-box;
+    box-shadow: 0px 9px 10px 2px rgba(0,0,0,0.1);
+    z-index: 10;
+    transition: 600ms;
+    left: 68px;
+    right: 86px;
+}
+
+#viewPane.openLeft {
+    left: 332px;
+}
+
+#viewPane.openRight {
+    right: 352px;
+}
+
+h2 {
+    color: #5e6565;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+}
+
+.leftPanel {
+    position: absolute;
+    background-color: #F1F1F1;
+    width: 274px;
+    top: 0px;
+    left: 68px;
+    bottom: 0px;
+    padding: 20px;
+}
+
+.rightPanel {
+    position: absolute;
+    background-color: #F1F1F1;
+    width: 274px;
+    top: 0px;
+    right: 86px;
+    bottom: 0px;
+    padding: 20px;
+}
+
 .leftButtonContainer {
     position: absolute;
     top: 0px;
     left: 0;
     bottom: 0;
-    background-color: yellow;
+/*    background-color: yellow;*/
 }
 
 .rightButtonContainer {
@@ -79,74 +152,42 @@ body {
     vertical-align: middle;
     text-align: center;
     opacity: .65;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .rightButtonTitle {
     display: table-cell;
     vertical-align: middle;
     opacity: .65;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .leftButton.clicked {
-    background-color: lightgray;
+    background-color: F1F1F1;
     color: #342e3b;
     border-top: 0px;
     letter-spacing: 0.0em;
     font-weight: 800;
+    width: 77px;
+    padding-right: 13px;
 }
 
 .rightButton.clicked {
-    background-color: lightgray;
+    background-color: #F1F1F1;
     color: #342e3b;
     border-top: 0px;
     letter-spacing: 0.0em;
     font-weight: 800;
-}
-
-#innerDiv {
-    background-color: yellow;
-    width: 50px;
-    height: 50px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .hidden {
     visibility: hidden;
 }
 
-.mouseOver {
-    background-color: green;
-}
 
-#newButtonDiv {
-    width: 150px;
-    height: 80px;
-    border: 1px solid black;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: orange;
-    margin: 1px;
-    padding: 0 4px 0 4px;
-    box-sizing: border-box;
-}
-
-#titleBar {
-    position: absolute;
-    height: 100%;
-    background-color: cadetblue;
-    left: 68px;
-    right: 86px;
-}
-
-.titleBarText {
-    color: white;
-    opacity: .8;
-    font-size: 14px;
-    font-weight: 300;
-    padding-left: 16px;
-    letter-spacing: 0.03em;
-    height: 50px;
-    margin: 0;
-    line-height: 50px;
-}
