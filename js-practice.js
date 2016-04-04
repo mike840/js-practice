@@ -65,7 +65,7 @@ function makeIndicatorButtons() {
         var div = document.createElement('div');
         var $div = $(div);
         $div.addClass('indicatorIcon');
-        $div.html('<');
+        $div.html('+');
         var buttonToAttachTo = '#indicatorButton' + i;
 
 
